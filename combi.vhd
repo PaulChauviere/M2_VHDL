@@ -63,8 +63,8 @@ end entity;
 
 architecture arch_add1b of add1b is
 begin
-  s <= A xor B;
-  cout <= A and B;
+  s <= (A xor B) xor cin;
+  cout <= (A and B) or (A and cin) or (B and cin);
 end arch_add1b;
 
 ------------------------------------------------------
@@ -87,13 +87,6 @@ end entity;
 
 architecture arch_addCarry of addCarry is
 
-  component add1b
-    port(
-      A,B,cin : in std_logic;
-      cout, s : out std_logic
-    );
-  end component;
-
   signal c : std_logic_vector(32 downto 0);
 
 begin
@@ -102,7 +95,7 @@ begin
   c31 <= c(32);
 
   G : for i in 0 to 31 generate
-    inst : add1b port map (A(i), B(i), c(i), s(i), c(i+1));
+    inst : Entity work.add1b port map (A(i), B(i), c(i), s(i), c(i+1));
   end generate;
 
 end arch_addCarry;
@@ -115,7 +108,7 @@ end arch_addCarry;
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
-use work.bus_mux_pkg.ALL;
+USE work.bus_mux_pkg.ALL;
 
 entity BarrelShifter IS
   port (
@@ -126,15 +119,23 @@ entity BarrelShifter IS
 end entity;
 
 architecture arch_BarrelShifter of BarrelShifter is
-  --type Tab32 is array(0 to 31) of std_logic_vector(31 downto 0);
-  --signal tabSL : Tab32;
-  --signal tabSR : Tab32;
+
+signal tabSL : bus_mux_array(31 downto 0);
+signal tabSR : bus_mux_array(31 downto 0);
 
 begin
 
+  tabSL(0) <= A;
+  tabSR(0) <= A;
+    
+  T : for i in 1 to 31 generate
+    tabSL(i) <= '0' & tabSL(i-1)(30 downto 0);
+    tabSR(i) <= tabSR(i-1)(31 downto 1) & '0';
+  end generate;
 
-  SR <= shift_right(A,to_integer(unsigned(ValDec)));
-  SL <= shift_left(A,to_integer(unsigned(ValDec)));
+  SR <= tabSR(to_integer(unsigned(ValDec)));
+  SL <= tabSL(to_integer(unsigned(ValDec)));
+
 end arch_BarrelShifter;
 
 

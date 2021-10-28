@@ -1,34 +1,23 @@
 v 4
-file . "test_add.vhd" "bbfbd6d18ce400baf6a6680d033e360641712b9a" "20211023144815.957":
-  entity test_add at 1( 0) + 0 on 251;
-  architecture arch_test_add of test_add at 11( 167) + 0 on 252;
-file . "test_banc_reg.vhd" "d8cd99e47eac9b1b052dd0a2fe075b7e5cf16a89" "20211021125647.152":
-  entity test_banc_registres at 6( 65) + 0 on 129;
-  architecture arch_test_banc_reg of test_banc_registres at 16( 254) + 0 on 130;
-file . "test_sequential.vhd" "a2e007617a779538a16d5eb9a18886f28929ccb0" "20211014131728.098":
-  entity test_registres at 1( 0) + 0 on 51;
-  architecture arch_test_reg of test_registres at 19( 313) + 0 on 52;
-file . "sequential.vhd" "a2b7447e0f5cd1ddacd8f116a4cbd39dab52fc64" "20211021125647.078":
-  package bus_mux_pkg at 1( 0) + 0 on 124;
-  entity reg at 13( 263) + 0 on 125;
-  architecture arch_reg of reg at 25( 496) + 0 on 126;
-  entity registerbank at 43( 751) + 0 on 127;
-  architecture arch_reg_bank of registerbank at 63( 1233) + 0 on 128;
-file . "combi.vhd" "e2b818c210c880c58a3a7c9f3cfc26025f00807f" "20211023211459.809":
-  entity mux4_1 at 6( 62) + 0 on 340;
-  architecture arch_mux4_1 of mux4_1 at 19( 365) + 0 on 341;
-  entity add at 32( 640) + 0 on 342;
-  architecture arch_add of add at 43( 848) + 0 on 343;
-  entity add1b at 53( 1053) + 0 on 344;
-  architecture arch_add1b of add1b at 64( 1221) + 0 on 345;
-  entity addcarry at 74( 1410) + 0 on 346;
-  architecture arch_addcarry of addcarry at 88( 1662) + 0 on 347;
-  entity barrelshifter at 116( 2173) + 0 on 348;
-  entity alu at 134( 2524) + 0 on 349;
-  entity extension at 160( 3094) + 0 on 350;
-file . "test_mux4.vhd" "884b3068631bcf97260f23fbfb909c5c841aefd7" "20211023141310.587":
-  entity test_mux at 1( 0) + 0 on 221;
-  architecture arch_test_mux of test_mux at 11( 167) + 0 on 222;
-file . "test_addCarry.vhd" "19656aa49c66beec68f8f5f91fab5aa8e125f637" "20211023211459.809":
-  entity test_addcarry at 1( 0) + 0 on 351;
-  architecture arch_test_addcarry of test_addcarry at 11( 177) + 0 on 352;
+file . "test_barrel.vhd" "5677261ac600b5faa749cdf14d7ce5e3e84804eb" "20211028133129.534":
+  entity test_barrel at 1( 0) + 0 on 160;
+  architecture arch_test_barrel of test_barrel at 12( 199) + 0 on 161;
+file . "combi.vhd" "b3ee52a59e1eac5bce1a46eace838d81f1fa7962" "20211028133129.397":
+  entity mux4_1 at 6( 62) + 0 on 148;
+  architecture arch_mux4_1 of mux4_1 at 19( 365) + 0 on 149;
+  entity add at 32( 640) + 0 on 150;
+  architecture arch_add of add at 43( 848) + 0 on 151;
+  entity add1b at 53( 1053) + 0 on 152;
+  architecture arch_add1b of add1b at 64( 1221) + 0 on 153;
+  entity addcarry at 74( 1452) + 0 on 154;
+  architecture arch_addcarry of addcarry at 88( 1704) + 0 on 155;
+  entity barrelshifter at 108( 2056) + 0 on 156;
+  architecture arch_barrelshifter of barrelshifter at 121( 2340) + 0 on 157;
+  entity alu at 146( 2852) + 0 on 158;
+  entity extension at 172( 3422) + 0 on 159;
+file . "sequential.vhd" "a2b7447e0f5cd1ddacd8f116a4cbd39dab52fc64" "20211028132604.556":
+  package bus_mux_pkg at 1( 0) + 0 on 89;
+  entity reg at 13( 263) + 0 on 90;
+  architecture arch_reg of reg at 25( 496) + 0 on 91;
+  entity registerbank at 43( 751) + 0 on 92;
+  architecture arch_reg_bank of registerbank at 63( 1233) + 0 on 93;
