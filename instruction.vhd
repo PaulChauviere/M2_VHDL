@@ -112,7 +112,7 @@ end arch_decodeur;
 
 ----------------------------------------------
 
--- Signaux ALU
+-- ALU Control
 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
@@ -154,3 +154,28 @@ Enable_V <= '1' when  ( (UAL_OP(1 downto 0) = "10" and F(5) = '1' and F(2) = '0'
           else '0';
 
 end arch_ALU_Control;
+
+
+
+
+----------------------------------------------
+
+-- PC_Control
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+entity PC_Control is
+  port(
+    N, Z, B_eq, B_ne, B_lez, B_gtz, B_bltz, B_gez, B_gez_AI, B_itz_AI, rt0 : in std_logic;
+    CPSrc : out std_logic
+    );
+end entity;
+
+architecture arch_PC_Control of PC_Control is
+begin
+    CPSrc <= '1' when ( (B_eq = '1' and Z = '1') or (B_ne = '1' and Z = '0') or (B_lez = '1' and (N = '1' or Z = '1')) or (B_gtz = '1' and N = '0' and Z = '0')
+                 or (B_bltz = '1' and N = '1' and Z = '0') or (B_gez = '1' and (N = '0' or Z = '1')) or ( B_itz_AI = '1' and rt0 = '0' and N = '1' and Z = '0') or ( B_gez_AI = '1' and rt0 = '1' and (N = '0' or Z = '1') )  ) 
+                 else '0';           
+end arch_PC_Control;
